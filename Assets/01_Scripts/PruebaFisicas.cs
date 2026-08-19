@@ -25,30 +25,77 @@ public class PruebaFisicas : MonoBehaviour
 
     void Update()
     {
-        Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+
+        bool hayInteraccion = false;
+        bool empezoAInteractuar = false;
+        bool terminoDeInteractuar = false;
+
+        Vector3 posicionPuntero = Input.mousePosition;
+
+        if (Input.touchCount > 0)
+        {
+            Touch toque = Input.GetTouch(0);
+
+            posicionPuntero = toque.position;
+            hayInteraccion = true;
+
+            if (toque.phase == TouchPhase.Began)
+                empezoAInteractuar = true;
+
+            if (toque.phase == TouchPhase.Ended ||
+                toque.phase == TouchPhase.Canceled)
+                terminoDeInteractuar = true;
+        }
+        // PC
+        else
+        {
+            if (Input.GetMouseButton(0))
+                hayInteraccion = true;
+
+            if (Input.GetMouseButtonDown(0))
+                empezoAInteractuar = true;
+
+            if (Input.GetMouseButtonUp(0))
+                terminoDeInteractuar = true;
+        }
+
+
+
+        if (Camera.main == null)
+            return;
+
+        Ray rayo = Camera.main.ScreenPointToRay(posicionPuntero);
         RaycastHit golpe;
 
-        // 1. ILUMINAR (HOVER)
         if (bloqueSeleccionado == null)
         {
             if (Physics.Raycast(rayo, out golpe))
             {
                 Rigidbody rb = golpe.collider.GetComponent<Rigidbody>();
+
                 if (rb != null)
                 {
                     GameObject bloqueTocado = golpe.collider.gameObject;
+
                     if (bloqueTocado.transform.position.y >= alturaMinimaPermitida)
                     {
-                        if (bloqueMirado != null && bloqueMirado != bloqueTocado)
+                        if (bloqueMirado != null &&
+                            bloqueMirado != bloqueTocado)
                         {
-                            bloqueMirado.GetComponent<Renderer>().material.color = colorOriginal;
+                            bloqueMirado.GetComponent<Renderer>().material.color =
+                                colorOriginal;
                         }
 
                         if (bloqueMirado != bloqueTocado)
                         {
                             bloqueMirado = bloqueTocado;
-                            colorOriginal = bloqueMirado.GetComponent<Renderer>().material.color;
-                            bloqueMirado.GetComponent<Renderer>().material.color = colorIluminado;
+
+                            colorOriginal =
+                                bloqueMirado.GetComponent<Renderer>().material.color;
+
+                            bloqueMirado.GetComponent<Renderer>().material.color =
+                                colorIluminado;
                         }
                     }
                 }
@@ -57,24 +104,29 @@ public class PruebaFisicas : MonoBehaviour
             {
                 if (bloqueMirado != null)
                 {
-                    bloqueMirado.GetComponent<Renderer>().material.color = colorOriginal;
+                    bloqueMirado.GetComponent<Renderer>().material.color =
+                        colorOriginal;
+
                     bloqueMirado = null;
                 }
             }
         }
 
-        // 2. CLIC IZQUIERDO: SELECCIONAR Y EMPEZAR A EMPUJAR
-        if (Input.GetMouseButtonDown(0))
+
+
+        if (empezoAInteractuar)
         {
             if (bloqueMirado != null)
             {
                 bloqueSeleccionado = bloqueMirado;
                 fuerzaActual = fuerzaInicial;
 
+                // SONIDO
                 if (audioSeleccion != null &&
                     Time.time - ultimoSonido >= tiempoEntreSonidos)
                 {
                     audioSeleccion.Play();
+
                     ultimoSonido = Time.time;
 
                     CancelInvoke(nameof(DetenerSonido));
@@ -83,36 +135,48 @@ public class PruebaFisicas : MonoBehaviour
             }
         }
 
-        // 3. MANTENER CLIC: Acelerar fuerza para sacar la pieza
-        if (Input.GetMouseButton(0) && bloqueSeleccionado != null)
+
+
+        if (hayInteraccion && bloqueSeleccionado != null)
         {
-            Rigidbody rbSeleccionado = bloqueSeleccionado.GetComponent<Rigidbody>();
+            Rigidbody rbSeleccionado =
+                bloqueSeleccionado.GetComponent<Rigidbody>();
+
             if (rbSeleccionado != null)
             {
                 fuerzaActual += velocidadDeCarga * Time.deltaTime;
-                if (fuerzaActual > fuerzaMaxima) fuerzaActual = fuerzaMaxima;
+
+                if (fuerzaActual > fuerzaMaxima)
+                    fuerzaActual = fuerzaMaxima;
 
                 Vector3 direccionEmpuje = rayo.direction;
-                rbSeleccionado.AddForce(direccionEmpuje * fuerzaActual * Time.deltaTime);
+
+                rbSeleccionado.AddForce(
+                    direccionEmpuje *
+                    fuerzaActual *
+                    Time.deltaTime
+                );
             }
         }
 
-        // 4. SOLTAR CLIC: LIBERAR LA PIEZA SIN TELETRANSPORTES
-        if (Input.GetMouseButtonUp(0))
+
+
+        if (terminoDeInteractuar)
         {
             if (bloqueSeleccionado != null)
             {
-                // Restauramos su color
                 if (bloqueSeleccionado != bloqueMirado)
                 {
-                    bloqueSeleccionado.GetComponent<Renderer>().material.color = colorOriginal;
+                    bloqueSeleccionado.GetComponent<Renderer>().material.color =
+                        colorOriginal;
                 }
 
-                // Simplemente soltamos la pieza de nuestra mano virtual
                 bloqueSeleccionado = null;
             }
         }
     }
+
+
 
     private void DetenerSonido()
     {
