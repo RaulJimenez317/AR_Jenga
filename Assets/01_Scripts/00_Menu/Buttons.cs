@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void IniciarPartida()
     {
-        SceneManager.LoadScene("JengaAR");
+        SceneManager.LoadScene("Fin");
     }
 
     public void Salir()

@@ -16,6 +16,13 @@ public class PruebaFisicas : MonoBehaviour
     private GameObject bloqueMirado;
     private GameObject bloqueSeleccionado;
 
+    [Header("Sonido de selección")]
+    public AudioSource audioSeleccion;
+    public float duracionSonido = 2f;
+    public float tiempoEntreSonidos = 2f;
+
+    private float ultimoSonido = -Mathf.Infinity;
+
     void Update()
     {
         Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,6 +70,16 @@ public class PruebaFisicas : MonoBehaviour
             {
                 bloqueSeleccionado = bloqueMirado;
                 fuerzaActual = fuerzaInicial;
+
+                if (audioSeleccion != null &&
+                    Time.time - ultimoSonido >= tiempoEntreSonidos)
+                {
+                    audioSeleccion.Play();
+                    ultimoSonido = Time.time;
+
+                    CancelInvoke(nameof(DetenerSonido));
+                    Invoke(nameof(DetenerSonido), duracionSonido);
+                }
             }
         }
 
@@ -94,6 +111,14 @@ public class PruebaFisicas : MonoBehaviour
                 // Simplemente soltamos la pieza de nuestra mano virtual
                 bloqueSeleccionado = null;
             }
+        }
+    }
+
+    private void DetenerSonido()
+    {
+        if (audioSeleccion != null)
+        {
+            audioSeleccion.Stop();
         }
     }
 }
