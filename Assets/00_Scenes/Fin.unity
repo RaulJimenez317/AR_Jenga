@@ -407,13 +407,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15006470}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.016099388, y: -0, z: -0, w: 0.9998705}
-  m_LocalPosition: {x: 0.08, y: 4.11, z: -11.96}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.42, y: 3.8, z: -16.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 1.845, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &15006477
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1561,8 +1561,8 @@ Transform:
   m_GameObject: {fileID: 486372012}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.41, z: 0}
-  m_LocalScale: {x: 0.90832794, y: 0.90832794, z: 0.90832794}
+  m_LocalPosition: {x: -6.94, y: -0.066, z: 0.07}
+  m_LocalScale: {x: 0.90832794, y: 0.908328, z: 0.908328}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907604395}
@@ -1598,7 +1598,7 @@ Transform:
   - {fileID: 15193469}
   - {fileID: 1459617466}
   - {fileID: 1730867474}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1031082948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &496722494 stripped
 GameObject:
@@ -4229,14 +4229,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: sss
+  mTrackableName: casa
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.0769231
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 1
+  mWidth: 1.0769231
   mHeight: 1.0769231
-  mRuntimeTexture: {fileID: 2800000, guid: b79b5fc6ccfedfc4086138ace0cc541a, type: 3}
+  mRuntimeTexture: {fileID: 2800000, guid: b3b1ca1720e78c14c81c94277cd43a0c, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -4250,10 +4250,13 @@ Transform:
   m_GameObject: {fileID: 1031082945}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.94, y: 0.066, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1512965455}
+  - {fileID: 1057476028}
+  - {fileID: 486372013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1031082949
@@ -4283,7 +4286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 1031082947}
   mHiddenRoot: {fileID: 0}
-  mTargetName: sss
+  mTargetName: casa
   mDatasetName: 
   mCastedBehaviour: {fileID: 1031082947}
   mMeshFilter: {fileID: 0}
@@ -4313,8 +4316,8 @@ Transform:
   m_GameObject: {fileID: 1057476027}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.41, z: 0}
-  m_LocalScale: {x: 0.90832794, y: 0.90832794, z: 0.90832794}
+  m_LocalPosition: {x: -6.94, y: -0.066, z: 0.07}
+  m_LocalScale: {x: 0.90832794, y: 0.908328, z: 0.908328}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1130773072}
@@ -4350,7 +4353,7 @@ Transform:
   - {fileID: 439852753}
   - {fileID: 510549365}
   - {fileID: 1079814055}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1031082948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070164771 stripped
 GameObject:
@@ -5578,11 +5581,11 @@ Transform:
   m_GameObject: {fileID: 1512965451}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.2666235, y: 0.292, z: 0}
-  m_LocalScale: {x: 35.4, y: 0.22525436, z: 32.51}
+  m_LocalPosition: {x: 2.5013003, y: -0.066, z: 0.8171075}
+  m_LocalScale: {x: 16.518023, y: 0.22525434, z: 9.869365}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1031082948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1512965456
 MonoBehaviour:
@@ -7341,9 +7344,6 @@ SceneRoots:
   - {fileID: 947513364}
   - {fileID: 988639952}
   - {fileID: 15006476}
-  - {fileID: 1031082948}
   - {fileID: 570753325}
   - {fileID: 633882748}
-  - {fileID: 1057476028}
-  - {fileID: 486372013}
-  - {fileID: 1512965455}
+  - {fileID: 1031082948}
