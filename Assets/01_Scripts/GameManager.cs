@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // =========================
 
     [Header("Realidad Aumentada")]
-    [SerializeField] private bool seguimientoAREstable = true;
+    [SerializeField] private bool seguimientoAREstable = false;
 
     // =========================
     // ESTADO DEL JUEGO

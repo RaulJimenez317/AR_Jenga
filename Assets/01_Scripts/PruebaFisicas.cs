@@ -68,6 +68,17 @@ public class PruebaFisicas : MonoBehaviour
             return;
         }
 
+         // ========================================
+    // BLOQUEAR SI EL AR NO ESTÁ ESTABLE
+    // ========================================
+
+    if (GameManager.Instance != null &&
+        !GameManager.Instance.SeguimientoAREstable)
+    {
+        LimpiarBloqueMirado();
+        return;
+    }
+
         // ========================================
         // INPUT
         // ========================================
